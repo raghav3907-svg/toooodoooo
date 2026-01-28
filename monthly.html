@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>૮꒰˶•༝•˶꒱ა‧₊˚ monthly planner ૮꒰˶•༝•˶꒱ა‧₊˚</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="overlay">
+  <h1>⊹₊⋆ 🐾ྀི monthly planner ⊹₊⋆ 🐾ྀི</h1>
+  <a href="index.html" class="monthly-btn">← back to weekly</a>
+
+  <div class="calendar notebook" id="calendar"></div>
+</div>
+
+<!-- modal -->
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <h3 id="modalDate"></h3>
+    <textarea id="modalInput" placeholder="write something soft…"></textarea>
+    <div class="modal-actions">
+      <button onclick="saveTask()">save</button>
+      <button onclick="closeModal()">cancel</button>
+    </div>
+  </div>
+</div>
+
+<img src="cat1.jpg" class="cat top-left">
+<img src="cat2.jpg" class="cat top-right">
+<img src="cat3.jpeg" class="cat bottom-left">
+<img src="cat1.jpg" class="cat bottom-right">
+
+<script src="monthly.js"></script>
+</body>
+</html>
