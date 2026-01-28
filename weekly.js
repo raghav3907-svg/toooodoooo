@@ -1,21 +1,40 @@
-const days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
+
+const taskInput = document.getElementById("taskInput");
+const daySelect = document.getElementById("day");
+
 let data = JSON.parse(localStorage.getItem("weeklyData")) || {};
 
-days.forEach(d => data[d] = data[d] || []);
+// ensure structure
+days.forEach(d => {
+  if (!data[d]) data[d] = [];
+});
 
 function addTask() {
   const task = taskInput.value.trim();
-  const day = document.getElementById("day").value;
+  const day = daySelect.value;
+
   if (!task) return;
 
   data[day].push(task);
   taskInput.value = "";
-  save(); render();
+
+  save();
+  render();
 }
 
-function deleteTask(day, i) {
-  data[day].splice(i,1);
-  save(); render();
+function deleteTask(day, index) {
+  data[day].splice(index, 1);
+  save();
+  render();
 }
 
 function save() {
@@ -25,11 +44,18 @@ function save() {
 function render() {
   days.forEach(day => {
     const el = document.getElementById(day);
+
     el.innerHTML = `<h3>${day}</h3>` +
-      data[day].map((t,i)=>`
-        <div class="task">${t}
-          <button onclick="deleteTask('${day}',${i})">✕</button>
-        </div>`).join("");
+      data[day]
+        .map(
+          (task, i) => `
+          <div class="task">
+            ${task}
+            <button onclick="deleteTask('${day}', ${i})">✕</button>
+          </div>
+        `
+        )
+        .join("");
   });
 }
 
